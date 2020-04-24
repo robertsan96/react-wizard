@@ -3,6 +3,8 @@ import { Row, Container, Col } from "react-bootstrap";
 
 import * as styles from "./Wizard.module.scss";
 
+import WizardHeader from "./layout/WizardHeader";
+
 const Wizard = () => {
   return (
     <Container>
@@ -10,9 +12,9 @@ const Wizard = () => {
         <Col
           className={styles.WizardContainer}
           lg={{ span: 8, offset: 2 }}
-          sm={12}
-        >
-          da
+          sm={{ span: 10, offset: 1 }}
+          xs={12}>
+          <WizardHeader />
         </Col>
       </Row>
     </Container>

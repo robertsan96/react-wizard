@@ -1,0 +1,25 @@
+@import "../../../scss/variables.scss";
+
+.WizardHeaderLogo {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.WizardHeaderTitleContainer {
+  margin-top: 20px;
+}
+
+.WizardHeaderTitle {
+  font-size: 26px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.WizardHeaderSubtitle {
+  font-size: 16px;
+  font-weight: 300;
+  color: $gray-darker-2;
+  text-align: center;
+}
