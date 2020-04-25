@@ -1,14 +1,4 @@
-@import "../../scss/keyframes.scss";
-
 .WizardContainer {
   background-color: rgb(248, 248, 248);
   border-radius: 7px;
-  min-height: 300px;
-  overflow-y: auto;
-
-  -webkit-animation: fadeInScroll 0.7s;
-  -moz-animation: fadeInScroll 0.7s;
-  -ms-animation: fadeInScroll 0.7s;
-  -o-animation: fadeInScroll 0.7s;
-  animation: fadeInScroll 0.7s;
 }

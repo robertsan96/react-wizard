@@ -10,17 +10,23 @@ export const WIZARD_STEP_PAYMENT = "wizard/step/payment";
 export const WIZARD_STEPS = [
   {
     id: WIZARD_STEP_ABOUT,
-    title: "About",
+    title: "Create your profile",
+    description: "This information will let us know more about you.",
+    name: "About you",
     icon: <PersonIcon style={{ fontSize: 44, color: "#fff" }} />,
   },
   {
     id: WIZARD_STEP_COMPANY,
-    title: "Business",
+    title: "Business details",
+    description: "We guarantee that the data is safely stored.",
+    name: "Business",
     icon: <BusinessIcon style={{ fontSize: 44, color: "#fff" }} />,
   },
   {
     id: WIZARD_STEP_PAYMENT,
-    title: "Payment",
+    title: "Awesome!",
+    description: "Use the Paypal button to make a payment.",
+    name: "Payment",
     icon: <PaymentIcon style={{ fontSize: 44, color: "#fff" }} />,
   },
 ];

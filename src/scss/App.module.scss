@@ -1,19 +1,38 @@
-@import "mixins.scss";
 @import url("https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;600;700;800;900&display=swap");
+@import "mixins.scss";
+@import "./keyframes.scss";
 
 .AppWrapper {
   font-family: "Muli", sans-serif;
+  position: absolute;
+  @include position(0, 0, 0, 0);
+
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.Content {
+  width: 100%;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  -webkit-animation: fadeInScroll 0.7s;
+  -moz-animation: fadeInScroll 0.7s;
+  -ms-animation: fadeInScroll 0.7s;
+  -o-animation: fadeInScroll 0.7s;
+  animation: fadeInScroll 0.7s;
+}
+
+.AppWrapperBackgroundImage {
   position: fixed;
   @include position(0, 0, 0, 0);
 
-  .Content {
-    position: absolute;
-    @include position(0, 0, 0, 0);
-    background: rgba($color: #00ade2, $alpha: 1);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  background: url("https://wallpapertag.com/wallpaper/full/8/c/6/144292-island-background-1920x1080-windows.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

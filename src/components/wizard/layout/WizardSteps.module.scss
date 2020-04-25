@@ -13,6 +13,16 @@
   border: 1px solid $gray-darker-1;
   padding: 15px;
   border-radius: 50px;
+  position: relative;
+
+  h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 16px;
+  }
 
   svg {
     color: $gray-darker-1 !important;
