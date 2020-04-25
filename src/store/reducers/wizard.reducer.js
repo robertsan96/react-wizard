@@ -3,12 +3,12 @@ import {
   SET_ACTIVE_STEP,
   SET_STEP_DATA,
 } from "../actions/wizard.actions";
-import { WIZARD_STEP_ABOUT } from "../../constants/wizard_steps";
+import { WIZARD_DATA_ABOUT } from "../../constants/wizard_data";
 
 const initialState = {
   steps: [],
   activeStep: undefined,
-  data: [],
+  data: [WIZARD_DATA_ABOUT],
 };
 
 export const wizardReducer = (state = initialState, action) => {
@@ -24,6 +24,7 @@ export const wizardReducer = (state = initialState, action) => {
         activeStep: action.payload,
       };
     case SET_STEP_DATA:
+      console.log(action);
       const allExceptActive = state.data.filter(
         (d) => d.id !== action.payload.id
       );

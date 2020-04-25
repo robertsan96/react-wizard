@@ -9,8 +9,6 @@ const WizardNextButton = () => {
   const wizard = useSelector((state) => state.wizardReducer);
   const activeStep = wizard.activeStep;
   const stepData = wizard.data.find((sd) => sd.id === activeStep.data.id);
-  console.log(stepData);
-  console.log(activeStep);
 
   const isActive = () => stepData && stepData.complete === true;
 

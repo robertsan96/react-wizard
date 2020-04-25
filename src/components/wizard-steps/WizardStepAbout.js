@@ -1,50 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 import * as styles from "./WizardSteps.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { WIZARD_STEP_ABOUT } from "../../constants/wizard_steps";
-import { WIZARD_DATA } from "../../constants/wizard_data";
 import { setWizard, SET_STEP_DATA } from "../../store/actions/wizard.actions";
 
 const WizardStepAbout = () => {
   const dispatch = useDispatch();
   const wizard = useSelector((state) => state.wizardReducer);
   const step = wizard.steps.find((s) => s.data.id === WIZARD_STEP_ABOUT);
-  const [stepData, setStepData] = useState({
-    ...WIZARD_DATA,
-    id: step.data.id,
-    data: {
-      firstName: "",
-      lastName: "",
-      email: "",
-    },
-  });
+  const stepData = wizard.data.find((s) => s.id === step.data.id);
 
   const [validEmail, setValidEmail] = useState(true);
 
-  // Side Effect to update the global state on changes.
-  useEffect(() => {
-    dispatch(setWizard(SET_STEP_DATA, stepData));
-  }, [dispatch, stepData]);
+  const validateData = useCallback(() => {
+    setValidEmail(isEmailValid(stepData.data.email));
+  }, [stepData]);
 
   const isEmailValid = (email) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
   };
 
-  const validateData = () => {
-    setValidEmail(isEmailValid(stepData.data.email));
+  const setValue = (forKey, value) => {
+    dispatch(
+      setWizard(SET_STEP_DATA, {
+        ...stepData,
+        data: { ...stepData.data, [forKey]: value },
+      })
+    );
   };
 
-  const setValue = (forKey, value) => {
+  const checkComplete = useCallback(() => {
+    if (validEmail && !stepData.complete) {
+      dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: true }));
+    }
+    if (!validEmail && stepData.complete) {
+      dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: false }));
+    }
+  }, [stepData, validEmail]);
+
+  useEffect(() => {
     validateData();
-    setStepData({
-      ...stepData,
-      data: { ...stepData.data, [forKey]: value },
-    });
-  };
+    checkComplete();
+  }, [stepData, validateData, checkComplete]);
 
   return (
     <Row>

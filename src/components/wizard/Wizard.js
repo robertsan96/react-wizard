@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Container, Col } from "react-bootstrap";
 
 import * as styles from "./Wizard.module.scss";
@@ -6,10 +6,14 @@ import * as styles from "./Wizard.module.scss";
 import WizardHeader from "./layout/WizardHeader";
 import WizardSteps from "./layout/WizardSteps";
 import WizardControls from "../wizard-controls/WizardControls";
+import { useStepDataInitializer } from "../../hooks/useStepDataInitializer";
 import { useSelector } from "react-redux";
 
 const Wizard = () => {
-  const activeStep = useSelector((state) => state.wizardReducer.activeStep);
+  useStepDataInitializer();
+  const wizard = useSelector((state) => state.wizardReducer);
+  const activeStep = wizard.activeStep;
+
   return (
     <Container>
       <Row>
