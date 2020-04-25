@@ -1,9 +1,15 @@
 import React from "react";
 
 import * as styles from "./WizardSteps.module.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  setWizard,
+  SET_ACTIVE_STEP,
+} from "../../../store/actions/wizard.actions";
 
 const WizardStep = ({ step }) => {
+  const dispatch = useDispatch();
   const uiSteps = useSelector((state) => state.wizardReducer.steps);
   const activeStep = useSelector((state) => state.wizardReducer.activeStep);
 
@@ -28,7 +34,9 @@ const WizardStep = ({ step }) => {
   return (
     <>
       {step.separator && <li className={uiStepSeparatorClasses.join(" ")}></li>}
-      <li className={uiStepClasses.join(" ")}>
+      <li
+        onClick={() => dispatch(setWizard(SET_ACTIVE_STEP, step))}
+        className={uiStepClasses.join(" ")}>
         <div>{step.data.icon}</div>
       </li>
     </>

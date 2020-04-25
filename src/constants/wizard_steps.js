@@ -3,6 +3,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import BusinessIcon from "@material-ui/icons/Business";
 import PaymentIcon from "@material-ui/icons/Payment";
 
+import WizardStepAbout from "../components/wizard-steps/WizardStepAbout";
+import WizardStepBusiness from "../components/wizard-steps/WizardStepBusiness";
+import WizardStepPayment from "../components/wizard-steps/WizardStepPayment";
+
 export const WIZARD_STEP_ABOUT = "wizard/step/about";
 export const WIZARD_STEP_COMPANY = "wizard/step/company";
 export const WIZARD_STEP_PAYMENT = "wizard/step/payment";
@@ -14,6 +18,7 @@ export const WIZARD_STEPS = [
     description: "This information will let us know more about you.",
     name: "About you",
     icon: <PersonIcon style={{ fontSize: 44, color: "#fff" }} />,
+    component: <WizardStepAbout />,
   },
   {
     id: WIZARD_STEP_COMPANY,
@@ -21,6 +26,7 @@ export const WIZARD_STEPS = [
     description: "We guarantee that the data is safely stored.",
     name: "Business",
     icon: <BusinessIcon style={{ fontSize: 44, color: "#fff" }} />,
+    component: <WizardStepBusiness />,
   },
   {
     id: WIZARD_STEP_PAYMENT,
@@ -28,5 +34,6 @@ export const WIZARD_STEPS = [
     description: "Use the Paypal button to make a payment.",
     name: "Payment",
     icon: <PaymentIcon style={{ fontSize: 44, color: "#fff" }} />,
+    component: <WizardStepPayment />,
   },
 ];
