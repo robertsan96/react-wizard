@@ -1,9 +1,8 @@
-import { WIZARD_STEP_ABOUT } from "../../constants/wizard_steps";
-import { SET_STEPS } from "../actions/wizard.actions";
+import { SET_STEPS, SET_ACTIVE_STEP } from "../actions/wizard.actions";
 
 const initialState = {
   steps: [],
-  activeStepId: WIZARD_STEP_ABOUT,
+  activeStep: undefined,
 };
 
 export const wizardReducer = (state = initialState, action) => {
@@ -12,6 +11,11 @@ export const wizardReducer = (state = initialState, action) => {
       return {
         ...state,
         steps: action.payload,
+      };
+    case SET_ACTIVE_STEP:
+      return {
+        ...state,
+        activeStep: action.payload,
       };
     default:
       return state;
