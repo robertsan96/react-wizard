@@ -1,3 +1,13 @@
 .ComponentContainer {
   padding: 15px !important;
 }
+
+.BusinessTypeRow {
+  display: flex;
+
+  align-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

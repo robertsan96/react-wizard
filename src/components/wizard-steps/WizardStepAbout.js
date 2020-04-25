@@ -40,7 +40,7 @@ const WizardStepAbout = () => {
     if (!validEmail && stepData.complete) {
       dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: false }));
     }
-  }, [stepData, validEmail]);
+  }, [dispatch, stepData, validEmail]);
 
   useEffect(() => {
     validateData();

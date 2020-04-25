@@ -1,4 +1,4 @@
-import { WIZARD_STEP_ABOUT } from "./wizard_steps";
+import { WIZARD_STEP_ABOUT, WIZARD_STEP_COMPANY } from "./wizard_steps";
 
 export const WIZARD_DATA = {
   id: "",
@@ -13,5 +13,22 @@ export const WIZARD_DATA_ABOUT = {
     firstName: "",
     lastName: "",
     email: "",
+  },
+};
+
+export const WIZARD_DATA_BUSINESS = {
+  id: WIZARD_STEP_COMPANY,
+  complete: false,
+  data: {
+    name: "",
+    website: "",
+    address: [
+      {
+        state: "",
+        city: "",
+        zip: "",
+        street: "",
+      },
+    ],
   },
 };
