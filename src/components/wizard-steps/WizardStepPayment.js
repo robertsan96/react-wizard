@@ -1,7 +1,7 @@
 import React from "react";
 
-import * as styles from "./WizardSteps.scss";
 import { Row, Col } from "react-bootstrap";
+import * as styles from "./WizardSteps.module.scss";
 
 const WizardStepPayment = () => {
   return (

@@ -1,0 +1,42 @@
+@import "../../scss/keyframes";
+@import "../../scss/variables";
+
+.ControlsContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  padding: 10px 10px;
+}
+
+.NextButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  border: 2px solid $gray-darker-1 !important;
+  outline: none !important;
+  transition: 0.19s;
+
+  svg {
+    color: $gray-darker-1;
+    font-size: 36px;
+  }
+}
+
+.NextButtonActive {
+  border: 2px solid #00ade2 !important;
+
+  animation: pulse 2s;
+  svg {
+    color: #00ade2;
+    animation: rightAnnotation 0.4s alternate infinite;
+  }
+
+  &:hover {
+    background-color: #00ade2;
+
+    svg {
+      color: #fff;
+    }
+  }
+}

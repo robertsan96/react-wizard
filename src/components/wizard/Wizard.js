@@ -1,10 +1,11 @@
 import React from "react";
-import { Row, Container, Col, Form, Button } from "react-bootstrap";
+import { Row, Container, Col } from "react-bootstrap";
 
 import * as styles from "./Wizard.module.scss";
 
 import WizardHeader from "./layout/WizardHeader";
 import WizardSteps from "./layout/WizardSteps";
+import WizardControls from "../wizard-controls/WizardControls";
 import { useSelector } from "react-redux";
 
 const Wizard = () => {
@@ -21,6 +22,7 @@ const Wizard = () => {
           <WizardSteps />
           <hr />
           {activeStep && activeStep.data.component}
+          {activeStep && <WizardControls />}
         </Col>
       </Row>
     </Container>
