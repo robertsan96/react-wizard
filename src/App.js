@@ -6,7 +6,6 @@ import Wizard from "./components/wizard/Wizard";
 const App = () => {
   return (
     <div className={styles.AppWrapper}>
-      <div className={styles.AppWrapperBackgroundImage}></div>
       <div className={styles.Content}>
         <Wizard />
       </div>

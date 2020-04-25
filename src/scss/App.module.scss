@@ -2,21 +2,17 @@
 @import "mixins.scss";
 @import "./keyframes.scss";
 
+html {
+  background: #00b7ff;
+}
 .AppWrapper {
   font-family: "Muli", sans-serif;
-  position: absolute;
-  @include position(0, 0, 0, 0);
-
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  background: #00b7ff;
 }
 
 .Content {
-  width: 100%;
-
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 
   -webkit-animation: fadeInScroll 0.7s;
   -moz-animation: fadeInScroll 0.7s;
@@ -25,14 +21,9 @@
   animation: fadeInScroll 0.7s;
 }
 
-.AppWrapperBackgroundImage {
-  position: fixed;
-  @include position(0, 0, 0, 0);
-
-  background: url("https://wallpapertag.com/wallpaper/full/8/c/6/144292-island-background-1920x1080-windows.jpg")
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+@media screen and (max-width: 480px) {
+  .Content {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 }

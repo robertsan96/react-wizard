@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Row, Container, Col } from "react-bootstrap";
 
 import * as styles from "./Wizard.module.scss";

@@ -41,7 +41,7 @@ export const useWizardStepUIBuilder = () => {
   // the list of steps was updated.
   useEffect(() => {
     if (uiSteps.length > 0 && activeStep === undefined) {
-      dispatch(setWizard(SET_ACTIVE_STEP, uiSteps[2]));
+      dispatch(setWizard(SET_ACTIVE_STEP, uiSteps[0]));
     }
     if (uiSteps.length === 0) {
       dispatch(setWizard(SET_ACTIVE_STEP, undefined));

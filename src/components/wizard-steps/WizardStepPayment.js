@@ -11,12 +11,13 @@ const WizardStepPayment = () => {
   const [paid, setPaid] = useState(false);
   return (
     <Row>
-      <Col>
+      <Col className={styles.ComponentContainer}>
         {!paid && (
           <PayPalButton
             amount={99.99}
             shippingPreference="NO_SHIPPING"
             onSuccess={(details, data) => {
+              // Call backend api with data collected.
               setPaid(true);
             }}
             options={{
