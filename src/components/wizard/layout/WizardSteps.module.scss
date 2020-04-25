@@ -1,0 +1,40 @@
+@import "../../../scss/variables.scss";
+
+.StepsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+}
+
+.Step {
+  list-style-type: none;
+  background-color: #fff;
+  border: 1px solid $gray-darker-1;
+  padding: 15px;
+  border-radius: 50px;
+
+  svg {
+    color: $gray-darker-1 !important;
+  }
+}
+.StepActive {
+  background-color: #00ade2;
+  border: 1px solid #00ade2;
+
+  svg {
+    color: #fff !important;
+  }
+}
+
+.StepSeparator {
+  list-style-type: none;
+  width: 100px;
+  padding: 1px;
+  margin: 10px;
+  background-color: $gray-darker-1;
+
+  .StepSeparatorActive {
+    background-color: #00ade2;
+  }
+}
