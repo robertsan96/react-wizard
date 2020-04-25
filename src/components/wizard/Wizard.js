@@ -8,6 +8,7 @@ import WizardSteps from "./layout/WizardSteps";
 import WizardControls from "../wizard-controls/WizardControls";
 import { useStepDataInitializer } from "../../hooks/useStepDataInitializer";
 import { useSelector } from "react-redux";
+import { WIZARD_STEP_PAYMENT } from "../../constants/wizard_steps";
 
 const Wizard = () => {
   useStepDataInitializer();
@@ -26,7 +27,9 @@ const Wizard = () => {
           <WizardSteps />
           <hr />
           {activeStep && activeStep.data.component}
-          {activeStep && <WizardControls />}
+          {activeStep && activeStep.data.id !== WIZARD_STEP_PAYMENT && (
+            <WizardControls />
+          )}
         </Col>
       </Row>
     </Container>
