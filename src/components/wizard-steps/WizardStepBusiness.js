@@ -4,14 +4,19 @@ import { Row, Col, Form } from "react-bootstrap";
 
 import * as styles from "./WizardSteps.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { WIZARD_STEP_ABOUT } from "../../constants/wizard_steps";
+import { WIZARD_STEP_COMPANY } from "../../constants/wizard_steps";
 import { setWizard, SET_STEP_DATA } from "../../store/actions/wizard.actions";
+import { WIZARD_DATA_BUSINESS } from "../../constants/wizard_data";
 
 const WizardStepBusiness = () => {
   const dispatch = useDispatch();
   const wizard = useSelector((state) => state.wizardReducer);
-  const step = wizard.steps.find((s) => s.data.id === WIZARD_STEP_ABOUT);
+  const step = wizard.steps.find((s) => s.data.id === WIZARD_STEP_COMPANY);
   const stepData = wizard.data.find((s) => s.id === step.data.id);
+
+  const requiredFields = Object.keys(WIZARD_DATA_BUSINESS.data);
+
+  const [valid, setValid] = useState(false);
 
   const setValue = (forKey, value) => {
     dispatch(
@@ -22,19 +27,37 @@ const WizardStepBusiness = () => {
     );
   };
 
-  // const checkComplete = useCallback(() => {
-  //   if (validEmail && !stepData.complete) {
-  //     dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: true }));
-  //   }
-  //   if (!validEmail && stepData.complete) {
-  //     dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: false }));
-  //   }
-  // }, [dispatch, stepData, validEmail]);
+  const checkComplete = useCallback(() => {
+    if (valid && !stepData.complete) {
+      dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: true }));
+    }
+    if (!valid && stepData.complete) {
+      dispatch(setWizard(SET_STEP_DATA, { ...stepData, complete: false }));
+    }
+  }, [dispatch, valid, stepData]);
+
+  const validField = useCallback(
+    (field) => {
+      return stepData.data[field];
+    },
+    [stepData]
+  );
+
+  const validateData = useCallback(() => {
+    let validData = true;
+    for (const field of requiredFields) {
+      if (!validField(field)) {
+        validData = false;
+        break;
+      }
+    }
+    setValid(validData);
+  }, [requiredFields, validField]);
 
   useEffect(() => {
-    // validateData();
-    // checkComplete();
-  }, [stepData]);
+    validateData();
+    checkComplete();
+  }, [validateData, checkComplete]);
 
   return (
     <Row>
@@ -44,12 +67,16 @@ const WizardStepBusiness = () => {
             <Form.Group as={Col} controlId="formGridBusinessName">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                required
                 type="text"
-                value={stepData.data.firstName}
-                onChange={(e) => setValue("firstName", e.target.value)}
+                isInvalid={!validField("name")}
+                value={stepData.data.name}
+                onChange={(e) => setValue("name", e.target.value)}
                 placeholder="Enter company name..."
               />
+
+              <Form.Control.Feedback type="invalid">
+                Provide a company name.
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridBusinessWebsite">
@@ -57,10 +84,14 @@ const WizardStepBusiness = () => {
               <Form.Control
                 required
                 type="text"
+                isInvalid={!validField("website")}
                 value={stepData.data.website}
-                onChange={(e) => setValue("firstName", e.target.value)}
+                onChange={(e) => setValue("website", e.target.value)}
                 placeholder="Enter company website..."
               />
+              <Form.Control.Feedback type="invalid">
+                Provide a website.
+              </Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Form.Label>Business Type</Form.Label>
@@ -92,12 +123,13 @@ const WizardStepBusiness = () => {
             <Form.Control
               required
               type="text"
-              value={stepData.data.email}
-              onChange={(e) => setValue("email", e.target.value)}
+              isInvalid={!validField("businessEmail")}
+              value={stepData.data.businessEmail}
+              onChange={(e) => setValue("businessEmail", e.target.value)}
               placeholder="Enter company business email address..."
             />
             <Form.Control.Feedback type="invalid">
-              Please provide a valid email address.
+              Please provide an email address.
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -106,54 +138,11 @@ const WizardStepBusiness = () => {
             <Form.Control
               required
               type="text"
-              value={stepData.data.firstName}
-              onChange={(e) => setValue("firstName", e.target.value)}
-              placeholder="Enter company street address..."
+              isInvalid={!validField("address")}
+              value={stepData.data.address}
+              onChange={(e) => setValue("address", e.target.value)}
+              placeholder="Enter company full address.."
             />
-          </Form.Group>
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridBusinessCity">
-              <Form.Control
-                required
-                type="text"
-                value={stepData.data.firstName}
-                onChange={(e) => setValue("firstName", e.target.value)}
-                placeholder="Enter company city..."
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridBusinessWebsite">
-              <Form.Control
-                required
-                type="text"
-                value={stepData.data.website}
-                onChange={(e) => setValue("firstName", e.target.value)}
-                placeholder="Enter company State / Region..."
-              />
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridBusinessCity">
-              <Form.Control
-                required
-                type="text"
-                value={stepData.data.firstName}
-                onChange={(e) => setValue("firstName", e.target.value)}
-                placeholder="Enter postal/zip code..."
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="exampleForm.SelectCustom">
-              <Form.Control as="select" custom>
-                <option>United States</option>
-                <option>Russia</option>
-                <option>Romania</option>
-              </Form.Control>
-            </Form.Group>
-          </Form.Row>
-          <Form.Group controlId="formGridBusinessDescription">
-            <Form.Label>About your Company</Form.Label>
-            <Form.Control as="textarea" rows="3" />
           </Form.Group>
         </Form>
       </Col>

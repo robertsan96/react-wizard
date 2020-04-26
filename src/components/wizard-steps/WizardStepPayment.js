@@ -6,23 +6,24 @@ import * as styles from "./WizardSteps.module.scss";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
 import { PayPalButton } from "react-paypal-button-v2";
+import { getPaypalId } from "../../constants/paypal";
 
 const WizardStepPayment = () => {
   const [paid, setPaid] = useState(false);
+
   return (
     <Row>
       <Col className={styles.ComponentContainer}>
         {!paid && (
           <PayPalButton
-            amount={99.99}
+            amount={0.01}
             shippingPreference="NO_SHIPPING"
             onSuccess={(details, data) => {
               // Call backend api with data collected.
               setPaid(true);
             }}
             options={{
-              clientId:
-                "AXyuMJEpKkrKG0BvMMouM7A7eDDTRcwNbCW1a5CnvH4XDSNW1Arb0tYM2_JYT-xLhn2590VNmoPdHLea",
+              clientId: getPaypalId(),
             }}
           />
         )}

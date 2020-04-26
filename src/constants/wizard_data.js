@@ -22,13 +22,7 @@ export const WIZARD_DATA_BUSINESS = {
   data: {
     name: "",
     website: "",
-    address: [
-      {
-        state: "",
-        city: "",
-        zip: "",
-        street: "",
-      },
-    ],
+    businessEmail: "",
+    address: "",
   },
 };
